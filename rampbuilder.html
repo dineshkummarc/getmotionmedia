@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+  <head>
+
+    <title>Ramp Builder v0.1</title>
+
+  </head>
+
+  <body>
+    <h1>Ramp Builder</h1>
+    <p>Utility for building "ramps" for the UI.</p>
+    <p>Usage: Store the music in the media folder and enter the filename with extension in the input box.</p>
+    <p>Keys: Z, A, Q, W, E, D, C</p>
+    <div>
+      <audio id="audio" controls></audio>
+    </div>
+    <div>
+      <input type="text" id="path" value="disco.mp3" />
+      <input type="button" id="load" value="Load/Reload" />
+    </div>
+    <div id="msg"></div>
+
+    <div>
+      <input type="button" id="build" value="Start building" />
+      <input type="button" id="stop" value="Stop/Generate JSON" />
+    </div>
+
+    <div id="json">
+
+    </div>
+
+    <div id="keydata">
+
+    </div>
+
+    <script src="src/plugins/jquery.js"></script>
+    <script>
+      
+      $(function(){
+
+        var ramp = [];
+
+        var dir = 'media/';
+        var path = $('#path');
+        var load = $('#load');
+        var audio = $('#audio');
+
+        var build = $('#build');
+        var stop = $('#stop');
+
+        var json = $('#json');
+
+        var msg = $('#msg');
+        var body = $('body');
+        var keydata = $('#keydata');
+        var keys = [122, 97, 113, 119, 101, 100, 99 ];
+
+        audio.on('error',function(){
+          msg.text('something went wrong with loading');
+          setTimeout(function(){
+            msg.text('');
+          },2000);
+        });
+
+        audio.on('loadeddata',function(){
+          msg.text('media ready for ramp build');
+          setTimeout(function(){
+            msg.text('');
+          },2000);
+        });
+
+        //prevent keypress from firing when typing the file name
+        path.on('keypress',function(e){
+          e.stopPropagation();
+        });
+
+        //load audio
+        load.on('click',function(){
+          ramp = [];
+          keydata.html('');
+          json.html('');
+          audio.attr('src',dir + path.val());
+        })
+
+        //start audio to start building
+        build.on('click',function(){
+          audio[0].play();
+        });
+
+        //stop everything and build the ramp JSON
+        stop.on('click',function(){
+          audio[0].pause();
+          json.text(JSON.stringify(ramp));
+        });
+
+        //coordinate keypresses
+        body.on('keypress',function(e){
+
+          //if audio paused, do nothing
+          if(audio[0].paused) return;
+
+          //if key is not in the set, do nothing
+          if(!~keys.indexOf(e.which)) return;
+
+          ramp.push({
+            key : e.which,
+            time : audio[0].currentTime
+          })
+
+          //show in visualizer
+          $('<div/>').text(e.which + ' @ ' + audio[0].currentTime).appendTo(keydata);
+        });
+
+      });
+
+    </script>
+
+  </body>
+
+</html>

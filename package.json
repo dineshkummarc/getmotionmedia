@@ -1,0 +1,27 @@
+{
+  "name": "GetMotionMedia",
+  "version": "0.0.0",
+  "description": "My entry for the May Mozilla Dev Derby which uses getUserMedia.",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": "",
+  "keywords": [
+    "Mozilla",
+    "Dev",
+    "Derby",
+    "getUserMedia",
+    "May"
+  ],
+  "dependencies": {},
+  "author": "Joseph Ammil Descalzota",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt-jsbeautifier": "~0.1.8",
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.5.4",
+    "grunt-contrib-watch": "~0.4.3"
+  }
+}
