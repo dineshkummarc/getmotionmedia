@@ -8,8 +8,8 @@ define([
     var self = this;
 
     var guideOffset = 250;
-    var speed = 1; //s
-    var graceTime = 500; //ms
+    var speed = 2; //s
+    var graceTime = 1000; //ms
     var points = 1000;
 
     //build our stage

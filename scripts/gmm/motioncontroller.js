@@ -5,8 +5,8 @@ define([
   var MotionController;
   var MotionControllerProto;
   var labels = ['nw', 'n', 'ne', 'w', 'c', 'e', 'sw', 's', 'se'];
-  var differenceThreshold = 50;
-  var buttonHitThreshold = 0.07;
+  var differenceThreshold = 21;
+  var buttonHitThreshold = 0.05;
 
   //button ratio, where 1 is the length of the canvas at that dimension
   var buttonWidthRatio = 1 / 5;
