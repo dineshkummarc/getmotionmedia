@@ -1,5 +1,5 @@
 define([
-    'utils/MiniEvent'
+    'utils/minievent'
 ], function (MiniEvent) {
 
   function TrackPlayer() {

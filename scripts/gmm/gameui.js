@@ -1,6 +1,6 @@
 define([
     'plugins/kinetic',
-    'utils/MiniEvent'
+    'utils/minievent'
 ], function (Kinetic, MiniEvent) {
 
   function GameUI(container, width, height) {
